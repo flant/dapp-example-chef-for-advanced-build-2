@@ -1,0 +1,12 @@
+dimg do
+  docker.from 'ubuntu:16.04'
+
+  git.add('/').to('/app')
+
+  chef do
+    cookbook 'apt'
+    cookbook 'rvm', github: 'fnichol/chef-rvm'
+
+    recipe 'ruby'
+  end
+end
