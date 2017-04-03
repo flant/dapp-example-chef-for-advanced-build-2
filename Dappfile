@@ -1,11 +1,11 @@
 dimg do
   docker.from 'ubuntu:16.04'
-  docker.workdir '/app'
-  docker.cmd ['/bin/bash', '-lec', 'bundle exec ruby app.rb']
-  docker.expose 4567
 
   git.add('/').to('/app')
   docker.workdir '/app'
+
+  docker.cmd ['/bin/bash', '-lec', 'bundle exec ruby app.rb']
+  docker.expose 4567
 
   chef do
     cookbook 'apt'
