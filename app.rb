@@ -3,10 +3,8 @@ require 'yaml'
 
 config = YAML.load File.read(File.join(File.dirname(__FILE__), 'config.yml'))
 
-get '/' do
-  'Hello'
-end
+set :bind, '0.0.0.0'
 
-get '/name' do
-  config['name']
+get '/message' do
+  config['message']
 end
