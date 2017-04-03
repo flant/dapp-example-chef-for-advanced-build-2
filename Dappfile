@@ -1,12 +1,16 @@
 dimg do
   docker.from 'ubuntu:16.04'
+  docker.cmd ['/bin/bash', '-lec', 'bundle exec ruby app.rb']
 
   git.add('/').to('/app')
+  docker.workdir '/app'
 
   chef do
     cookbook 'apt'
     cookbook 'rvm', github: 'fnichol/chef-rvm'
 
     recipe 'ruby'
+    recipe 'bundle_gems'
+    recipe 'app_config'
   end
 end
