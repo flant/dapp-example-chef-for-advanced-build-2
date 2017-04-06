@@ -8,6 +8,7 @@ dimg do
   docker.expose 4567
 
   chef do
+    attributes['dimod-example-ruby']['ruby_version'] = '2.3.1'
     dimod 'dimod-example-ruby', github: 'flant/dimod-example-ruby'
 
     recipe 'bundle_gems'
