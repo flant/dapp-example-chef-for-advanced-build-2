@@ -8,10 +8,8 @@ dimg do
   docker.expose 4567
 
   chef do
-    cookbook 'apt'
-    cookbook 'rvm', github: 'fnichol/chef-rvm'
+    dimod 'dimod-example-ruby', github: 'flant/dimod-example-ruby'
 
-    recipe 'ruby'
     recipe 'bundle_gems'
     recipe 'app_config'
   end
