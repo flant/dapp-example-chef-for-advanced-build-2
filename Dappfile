@@ -4,12 +4,15 @@ dimg do
   git.add('/').to('/app')
   docker.workdir '/app'
 
-  docker.cmd ['/bin/bash', '-lec', 'bundle exec ruby app.rb']
-  docker.expose 4567
+  docker.cmd ['/bin/bash', '-lec', 'nginx && bundle exec ruby app.rb']
+  docker.expose 80
 
   chef do
     attributes['dimod-example-ruby']['ruby_version'] = '2.3.1'
     dimod 'dimod-example-ruby', github: 'flant/dimod-example-ruby'
+
+    attributes['dimod-example-local-nginx']['proxy_to_port'] = '4567'
+    dimod 'dimod-example-local-nginx', github: 'flant/dimod-example-local-nginx'
 
     recipe 'bundle_gems'
     recipe 'app_config'
